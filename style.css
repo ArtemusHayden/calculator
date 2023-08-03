@@ -3,13 +3,14 @@ html, .body {
     height: 100%;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .display-cont {
     height: 100px;
-    width: 600px;
     background-color: aqua;
-    margin: 32px;
+    margin: 12px;
+    border-radius: 20px;
 }
 
 .calc-body, .display-cont, .button-cont, .body {
@@ -17,11 +18,11 @@ html, .body {
 }
 
 .calc-body {
-    align-items: center;
-    justify-content: center;
+    margin: auto;
     flex-direction: column;
     border-style:solid ;
-    border: 4px green;
+    border: 10px red;
+    width: 600px;
 }
 
 .button-cont {
@@ -30,9 +31,11 @@ html, .body {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin: 16px;
 }
 
 button {
-    width: 280px;
+    width: 270px;
     height: 50px;
+    border-radius: 20px;
 }

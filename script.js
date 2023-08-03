@@ -1,64 +1,130 @@
 const displayCont = document.querySelector('.display-cont')
 
+let numbers = []
+const NUMBER_OF_TERMS_EVALUATED = 2;
+let termNumber=""
+let add, subtract, divison, multiply, operator = false;
 
 
-const numberZero = document.querySelector('#zero')
-let zero = document.createTextNode("0")
+
+function addFun(total, number) {
+    total += number
+    return total
+}
+
+function subtractFun(){return "sub"}
+
+function divisonFun(){return "div"}
+
+function multiplyFun(total, number){
+    total = 1;
+    total * number
+    return total;
+}
 
 
-numberZero.addEventListener('click', ()=>{
-    displayCont.appendChild(zero)
-})
-
-const numberOne = document.querySelector('#one')
-let one = document.createTextNode("1")
 
 
-numberOne.addEventListener('click', ()=>{
-    displayCont.appendChild(one)
-})
+function equalClicked() {
+    numbers.push(Number(termNumber));
+    if (add === true){
+        console.log(numbers.reduce(addFun)); 
+    } else if (subtract === true){
+        console.log(numbers.reduce(subtractFun))
+    } else if (divison === true){
+        console.log(numbers.reduce(divisonFun))
+    } else {
+        console.log(numbers.reduce(multiplyFun))
+    }
+}
+
+function operatorClicked(value) {
+    operator = true;
+    numbers.push(Number(termNumber));
+    termNumber=""
+    console.log(numbers)
+
+    if (value === "+"){
+        add = true;
+    } else if (value === "-"){
+        subtract = true;
+    } else if (value === "/") {
+        divison = true;
+    } else {
+        multiply = true;
+    }
+}
+
+function getNumber(value) {
+    termNumber += value
+    console.log(termNumber)
+
+}
 
 
-// html, .body {
-//     width: 100%;
-//     height: 100%;
-//     margin: 0;
-//     padding: 0;
+
+
+
+
+
+
+
+
+
+
+// function getNumber(value) {
+//     if (operator === true)
+//         if (numbers.length < NUMBER_OF_TERMS_EVALUATED) {
+//             numbers.push(Number(termNumber));
+//             console.log(numbers)
+
+//             termNumber += value
+//             console.log(termNumber)
+
+
+//         } else {
+//             console.log(numbers.reduce(add));
+//             numbers.push(numbers.reduce(add));
+//             numbers = []
+//             console.log(numbers)
+//     } else {
+//         termNumber += value
+//         console.log(termNumber)
+//     }
 // }
 
-// .display-cont {
-//     height: 100px;
-//     width: 600px;
-//     background-color: aqua;
-//     margin: 16px;
-//     box-sizing: border-box;
+// function operatorClicked() {
+//     operator = true;
 // }
 
-// .calc-body, .display-cont, .button-cont, .body {
-//     display: flex;
+// function add(total, number) {
+//     total += number
+//     return total
 // }
 
-// .calc-body {
-//     margin: auto;
-//     flex-direction: column;
-//     border: 4px green;
-//     border-style: solid;
-//     box-sizing: border-box;
-//     width: 650px;
+
+// let numbers = []
+// const NUMBER_OF_TERMS_EVALUATED = 2;
+// let total = 0
+
+// function getNumbers(value) {
+//     numbers.push(value);
+//     console.log(numbers)
+// }
+// function add(total, number) {
+//     total += number
+//     return total
 // }
 
-// .button-cont {
-//     max-width: 600px;
-//     gap: 16px;
-//     flex-wrap: wrap;
-//     justify-content: space-around;
-// }
-// button {
-//     width: 280px;
-//     height: 50px;
-// }
 
-// /* .body{
-//     align-items: center;
-//     justify-content: center
-// } */
+// function getNumbers(value) {
+    // if (numbers.length < NUMBER_OF_TERMS_EVALUATED) {
+    //     numbers.push(Number(value));
+    //     console.log(numbers)
+    // } else {
+    //     console.log(numbers.reduce(add));
+    //     numbers.push(numbers.reduce(add));
+    //     numbers = []
+    //     console.log(numbers)
+    // }
+// }
