@@ -1,9 +1,9 @@
-const displayCont = document.querySelector('.display-cont')
-
 let numbers = []
 const NUMBER_OF_TERMS_EVALUATED = 2;
 let termNumber=""
 let add, subtract, divison, multiply, operator = false;
+var term=""
+const displayCont = document.querySelector('.display-cont')
 
 function addFun(total, number) {
     total += number
@@ -25,24 +25,29 @@ function multiplyFun(array){
   return sumWithInitial
 }
 
-function equalClicked() {
-    numbers.push(Number(termNumber));
+function equalClicked(value) {
+    createTerm();
+    create(value)
     if (add === true){
-        console.log(numbers.reduce(addFun)); 
+        create(numbers.reduce(addFun)); 
+        add = false;
     } else if (subtract === true){
-        console.log(subtractFun(numbers))
+        create(subtractFun(numbers))
+        subtract = false;
     } else if (divison === true){
-        console.log(divisonFun(numbers))
+        create(divisonFun(numbers))
+        divison = false;
     } else {
-        console.log(multiplyFun(numbers))
+        create(multiplyFun(numbers))
+        multiply = false;
     }
 }
 
 function operatorClicked(value) {
     operator = true;
-    numbers.push(Number(termNumber));
-    termNumber=""
-    console.log(numbers)
+    createTerm();
+    termNumber="";
+    console.log(numbers);
 
     if (value === "+"){
         add = true;
@@ -53,10 +58,40 @@ function operatorClicked(value) {
     } else {
         multiply = true;
     }
+
+    create(value);
+}
+
+function createTerm(){
+    numbers.push(Number(termNumber));
 }
 
 function getNumber(value) {
     termNumber += value
-    console.log(termNumber)
-
+    create(value); 
+    console.log(numbers)
 }
+
+function create(value){
+    var term = document.createElement('div');
+    term.textContent = value;
+    term.classList.add('term')
+    displayCont.appendChild(term);
+}
+
+function allClear(){
+    numbers = []
+    termNumber=""
+    displayCont.innerHTML="";
+}
+
+function clearTerm(){
+    console.log(numbers)
+    numbers.pop()
+
+    
+
+    let numOfElements = document.getElementsByClassName('term').length;
+    displayCont.removeChild(displayCont.children[numOfElements-1])
+}
+

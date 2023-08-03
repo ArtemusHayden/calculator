@@ -14,13 +14,14 @@
     
         <div class="button-cont">
 
-            <button>AC</button>
-            <button>C</button>
+            <button class="allClear" onclick="allClear()">AC</button>
+
+            <button class="clear" onclick="clearTerm()">C</button>
 
             <button class="operator" id="add" value="+" onclick="operatorClicked(this.value)">+</button>
             <button class="operator" id="subtract" value="-" onclick="operatorClicked(this.value)">-</button>
             <button class="operator" id="divison" value="/" onclick="operatorClicked(this.value)">/</button>
-            <button class="operator" id="multiplication" value="*" onclick="operatorClicked(this.value)">X</button>
+            <button class="operator" id="multiplication" value="x" onclick="operatorClicked(this.value)">X</button>
 
             <button class="number" id="zero" value="0" onclick="getNumber(this.value)">0</button>
             <button class="number" id="one" value="1" onclick="getNumber(this.value)">1</button>
@@ -34,7 +35,7 @@
             <button class="number" id="nine" value="9" onclick="getNumber(this.value)">9</button>
 
             <button >.</button>
-            <button class="operator" id="equal" value="=" onclick="equalClicked()">=</button>
+            <button class="operator" id="equal" value="=" onclick="equalClicked(this.value)">=</button>
         </div>
 
     </div>

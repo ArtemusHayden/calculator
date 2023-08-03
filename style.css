@@ -39,3 +39,9 @@ button {
     height: 50px;
     border-radius: 20px;
 }
+
+.term {
+    width: 20px;
+    background-color: black;
+    color: azure;
+}
