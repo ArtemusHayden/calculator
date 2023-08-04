@@ -6,12 +6,13 @@ var term=""
 const displayCont = document.querySelector('.display-cont')
 
 function addFun(total, number) {
+    console.log(total, number)
     total += number
-    return total
+    return Number(total)
 }
 
 function subtractFun(array){
-    return (array[NUMBER_OF_TERMS_EVALUATED -2] - array[NUMBER_OF_TERMS_EVALUATED - 1])
+    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] - array[NUMBER_OF_TERMS_EVALUATED - 1]))
 }
 
 function divisonFun(array){
@@ -69,7 +70,6 @@ function createTerm(){
 function getNumber(value) {
     termNumber += value
     create(value); 
-    console.log(numbers)
 }
 
 function create(value){
@@ -86,11 +86,10 @@ function allClear(){
 }
 
 function clearTerm(){
-    console.log(numbers)
+    createTerm();
     numbers.pop()
-
+    termNumber=""
     
-
     let numOfElements = document.getElementsByClassName('term').length;
     displayCont.removeChild(displayCont.children[numOfElements-1])
 }
