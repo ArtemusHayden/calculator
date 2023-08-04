@@ -29,26 +29,39 @@ function multiplyFun(array){
 function equalClicked(value) {
     createTerm();
     create(value)
+
+    termNumber=""
+    displayCont.innerHTML="";
+    
     if (add === true){
-        create(numbers.reduce(addFun)); 
+        create(numbers.reduce(addFun));
+        numbers = [numbers.reduce(addFun)] 
         add = false;
+
     } else if (subtract === true){
         create(subtractFun(numbers))
+        console.log(subtractFun(numbers))
+        numbers = [subtractFun(numbers)]
+        console.log(numbers)
         subtract = false;
+
     } else if (divison === true){
         create(divisonFun(numbers))
+        numbers = [divisonFun(numbers)]
         divison = false;
+
     } else {
         create(multiplyFun(numbers))
+        numbers = [multiplyFun(numbers)]
         multiply = false;
     }
+
 }
 
 function operatorClicked(value) {
     operator = true;
     createTerm();
     termNumber="";
-    console.log(numbers);
 
     if (value === "+"){
         add = true;
@@ -93,4 +106,3 @@ function clearTerm(){
     let numOfElements = document.getElementsByClassName('term').length;
     displayCont.removeChild(displayCont.children[numOfElements-1])
 }
-
