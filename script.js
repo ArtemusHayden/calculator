@@ -1,14 +1,15 @@
 let numbers = []
 const NUMBER_OF_TERMS_EVALUATED = 2;
 let termNumber=""
-let add, subtract, divison, multiply, operator = false;
+let add = subtract = divison = multiply = decimal = operator = false;
 var term=""
 const displayCont = document.querySelector('.display-cont')
+let equalCounter = 0;
 
-function addFun(total, number) {
-    console.log(total, number)
-    total += number
-    return Number(total)
+equalJustClicked = false;
+
+function addFun(array) {
+    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] + array[NUMBER_OF_TERMS_EVALUATED - 1]))
 }
 
 function subtractFun(array){
@@ -16,51 +17,63 @@ function subtractFun(array){
 }
 
 function divisonFun(array){
-    return (array[NUMBER_OF_TERMS_EVALUATED -2] / array[NUMBER_OF_TERMS_EVALUATED - 1])
+    if (array[NUMBER_OF_TERMS_EVALUATED - 1] === 0){
+        return "*explosion noises*"
+    } else {
+    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] / array[NUMBER_OF_TERMS_EVALUATED - 1]))
+    }
 }
 
 function multiplyFun(array){
-    const intial = 1;
-    const sumWithInitial = array.reduce(
-    (accumulator, currentValue) => accumulator * currentValue, intial)
-  return sumWithInitial
+    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] * array[NUMBER_OF_TERMS_EVALUATED - 1]))
 }
 
 function equalClicked(value) {
-    createTerm();
+    if (equalJustClicked === false) {
+    if (equalCounter > 0){
+        numbers.pop();
+    }
+
+    createTerm(value);
     create(value)
 
-    termNumber=""
     displayCont.innerHTML="";
     
     if (add === true){
-        create(numbers.reduce(addFun));
-        numbers = [numbers.reduce(addFun)] 
+        let returnValue = addFun(numbers)
+        create(returnValue);
+        numbers = [returnValue]
         add = false;
 
     } else if (subtract === true){
-        create(subtractFun(numbers))
-        console.log(subtractFun(numbers))
-        numbers = [subtractFun(numbers)]
-        console.log(numbers)
+        let returnValue = subtractFun(numbers)
+        create(returnValue);
+        numbers = [returnValue]
         subtract = false;
 
     } else if (divison === true){
-        create(divisonFun(numbers))
-        numbers = [divisonFun(numbers)]
+        let returnValue = divisonFun(numbers)
+        create(returnValue);
+        numbers = [returnValue]
         divison = false;
 
     } else {
-        create(multiplyFun(numbers))
-        numbers = [multiplyFun(numbers)]
+        let returnValue = multiplyFun(numbers)
+        create(returnValue);
+        numbers = [returnValue]
         multiply = false;
     }
-
+    equalCounter += 1
+    operator = decimal = false
+    equalJustClicked = true
+    console.log(numbers, "after equal")
+}
+equalJustClicked = true
 }
 
 function operatorClicked(value) {
-    operator = true;
-    createTerm();
+    if (operator === false){
+        createTerm(value);
     termNumber="";
 
     if (value === "+"){
@@ -72,17 +85,33 @@ function operatorClicked(value) {
     } else {
         multiply = true;
     }
-
     create(value);
+
+    }
+    operator = true;
+    decimal = false;
+    equalJustClicked = false;
 }
 
 function createTerm(){
     numbers.push(Number(termNumber));
+    console.log(numbers, "term just created")
 }
 
 function getNumber(value) {
-    termNumber += value
-    create(value); 
+    if (equalJustClicked === false){
+        termNumber += value
+        create(value); 
+    }
+    console.log(numbers)
+}
+
+function getDecimal(value){
+    if (decimal === false){
+        termNumber += value
+        create(value)
+    }
+    decimal = true; 
 }
 
 function create(value){
@@ -93,16 +122,31 @@ function create(value){
 }
 
 function allClear(){
-    numbers = []
+    operator = false
+
+    numbers.length = 0
+
     termNumber=""
-    displayCont.innerHTML="";
+    displayCont.innerHTML=""
+    equalJustClicked = false
+    equalCounter = 0;
 }
 
 function clearTerm(){
-    createTerm();
-    numbers.pop()
-    termNumber=""
+    if (equalJustClicked === false){
+        equalCounter = 0;
+        termNumber = termNumber.slice(0,-1);
+
+        let numOfElements = document.getElementsByClassName('term').length;
+        displayCont.removeChild(displayCont.children[numOfElements-1])
+        console.log(numbers, "after clear") 
+    } else { allclear()}
     
-    let numOfElements = document.getElementsByClassName('term').length;
-    displayCont.removeChild(displayCont.children[numOfElements-1])
 }
+
+
+
+
+// everything works except validation for hitting things and clear buttons
+
+// ^ that was a lie
