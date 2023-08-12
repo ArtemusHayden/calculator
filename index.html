@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header><h1>Calculator</h1></header>
     <div class="calc-body">
-
+       
         <div class="display-cont"></div>
     
         <div class="button-cont">
@@ -34,11 +35,13 @@
             <button class="number" id="eight" value="8" onclick="getNumber(this.value)">8</button>
             <button class="number" id="nine" value="9" onclick="getNumber(this.value)">9</button>
 
-            <button class="decimal" value="." onclick="getDecimal(this.value)" >.</button>
-            <button class="operator" value="=" onclick="equalClicked(this.value)">=</button>
+            <button class="number" value="." onclick="getDecimal(this.value)" >.</button>
+            <button class="operator" value="=" id="equal" onclick="equalClicked(this.value)">=</button>
         </div>
 
     </div>
+
+    <footer><h1>GitHub @ ArtemusHayden</h1></footer>
    
 </body>
 </html>

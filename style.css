@@ -8,20 +8,25 @@ html, .body {
 
 .display-cont {
     height: 100px;
-    background-color: aqua;
+    background-color: lightgrey;
     margin: 12px;
     border-radius: 20px;
 }
 
-.calc-body, .display-cont, .button-cont, .body, .term {
+.calc-body, .display-cont, .button-cont, .body, .term, header, footer{
     display: flex;
+}
+
+header {
+    margin: auto;
 }
 
 .calc-body {
     margin: auto;
     flex-direction: column;
     border-style:solid ;
-    border: 10px red;
+    border-radius: 20px;
+    border-color: black;
     width: 600px;
 }
 
@@ -43,11 +48,41 @@ button {
 .term {
     width: 50px;
     border-radius: 20px;
-    background-color: black;
+    background-color: darkgray;
     color: azure;
+    font-size: 26px;
     padding: 3px;
     margin: 4px;
     align-items: center;
     justify-content: center;
-    
 }
+
+.clear:hover {
+    background-color: lightcoral;
+  }
+
+.allClear:hover {
+    background-color: red;
+  }
+
+.operator:hover {
+    background-color: lightblue;
+  }
+
+  .number:hover {
+    background-color: lightgray;
+  }
+  #equal:hover {
+    background-color: lightgreen;
+  }
+
+  header, footer {
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+  }
+
+  h1 {
+    padding: 8px;
+    margin: 8px;
+  }

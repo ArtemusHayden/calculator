@@ -87,6 +87,7 @@ function operatorClicked(value) {
     create(value);
 
     }
+
     operator = true;
     decimal = false;
     equalJustClicked = false;
@@ -142,6 +143,4 @@ function clearTerm(){
 
 
 
-// everything works except validation for hitting things and clear buttons
-
-// ^ that was a lie
+// clear term on operator does not work
