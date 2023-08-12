@@ -9,23 +9,23 @@ let equalCounter = 0;
 equalJustClicked = false;
 
 function addFun(array) {
-    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] + array[NUMBER_OF_TERMS_EVALUATED - 1]))
+    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] + array[NUMBER_OF_TERMS_EVALUATED - 1]).toFixed(2))
 }
 
 function subtractFun(array){
-    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] - array[NUMBER_OF_TERMS_EVALUATED - 1]))
+    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] - array[NUMBER_OF_TERMS_EVALUATED - 1]).toFixed(2))
 }
 
 function divisonFun(array){
     if (array[NUMBER_OF_TERMS_EVALUATED - 1] === 0){
-        return "*explosion noises*"
+        return "ERR"
     } else {
-    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] / array[NUMBER_OF_TERMS_EVALUATED - 1]))
+    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] / array[NUMBER_OF_TERMS_EVALUATED - 1]).toFixed(2))
     }
 }
 
 function multiplyFun(array){
-    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] * array[NUMBER_OF_TERMS_EVALUATED - 1]))
+    return Number((array[NUMBER_OF_TERMS_EVALUATED -2] * array[NUMBER_OF_TERMS_EVALUATED - 1]).toFixed(2))
 }
 
 function equalClicked(value) {
@@ -72,22 +72,21 @@ function equalClicked(value) {
 
 function operatorClicked(value) {
     if (operator === false){
-        createTerm(value);
-    termNumber="";
+        createTerm(termNumber);
+        termNumber="";
 
-    if (value === "+"){
-        add = true;
-    } else if (value === "-"){
-        subtract = true;
-    } else if (value === "/") {
-        divison = true;
-    } else {
-        multiply = true;
+        if (value === "+"){
+            add = true;
+        } else if (value === "-"){
+            subtract = true;
+        } else if (value === "/") {
+            divison = true;
+        } else {
+            multiply = true;
+        }
+        create(value);
+
     }
-    create(value);
-
-    }
-
     operator = true;
     decimal = false;
     equalJustClicked = false;
@@ -110,7 +109,6 @@ function getDecimal(value){
         create(value)
     }
     decimal = true; 
-
 }
 
 function create(value){
@@ -130,6 +128,7 @@ function allClear(){
 }
 
 function clearTerm(){
+    if (operator === true){allClear()}
     if (equalJustClicked === false){
         equalCounter = 0;
         termNumber = termNumber.slice(0,-1);
@@ -137,10 +136,4 @@ function clearTerm(){
         let numOfElements = document.getElementsByClassName('term').length;
         displayCont.removeChild(displayCont.children[numOfElements-1])
     } 
-    
 }
-
-
-
-
-// clear term on operator does not work
