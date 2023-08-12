@@ -30,45 +30,44 @@ function multiplyFun(array){
 
 function equalClicked(value) {
     if (equalJustClicked === false) {
-    if (equalCounter > 0){
-        numbers.pop();
+        if (equalCounter > 0){
+            numbers.pop();
+        }
+
+        createTerm(value);
+        create(value)
+
+        displayCont.innerHTML="";
+        
+        if (add === true){
+            let returnValue = addFun(numbers)
+            create(returnValue);
+            numbers = [returnValue]
+            add = false;
+
+        } else if (subtract === true){
+            let returnValue = subtractFun(numbers)
+            create(returnValue);
+            numbers = [returnValue]
+            subtract = false;
+
+        } else if (divison === true){
+            let returnValue = divisonFun(numbers)
+            create(returnValue);
+            numbers = [returnValue]
+            divison = false;
+
+        } else {
+            let returnValue = multiplyFun(numbers)
+            create(returnValue);
+            numbers = [returnValue]
+            multiply = false;
+        }
+        equalCounter += 1
+        operator = decimal = false
     }
-
-    createTerm(value);
-    create(value)
-
-    displayCont.innerHTML="";
-    
-    if (add === true){
-        let returnValue = addFun(numbers)
-        create(returnValue);
-        numbers = [returnValue]
-        add = false;
-
-    } else if (subtract === true){
-        let returnValue = subtractFun(numbers)
-        create(returnValue);
-        numbers = [returnValue]
-        subtract = false;
-
-    } else if (divison === true){
-        let returnValue = divisonFun(numbers)
-        create(returnValue);
-        numbers = [returnValue]
-        divison = false;
-
-    } else {
-        let returnValue = multiplyFun(numbers)
-        create(returnValue);
-        numbers = [returnValue]
-        multiply = false;
-    }
-    equalCounter += 1
-    operator = decimal = false
     equalJustClicked = true
-    console.log(numbers, "after equal")
-}
-equalJustClicked = true
+    decimal = true;
 }
 
 function operatorClicked(value) {
@@ -95,7 +94,6 @@ function operatorClicked(value) {
 
 function createTerm(){
     numbers.push(Number(termNumber));
-    console.log(numbers, "term just created")
 }
 
 function getNumber(value) {
@@ -103,7 +101,6 @@ function getNumber(value) {
         termNumber += value
         create(value); 
     }
-    console.log(numbers)
 }
 
 function getDecimal(value){
@@ -112,6 +109,7 @@ function getDecimal(value){
         create(value)
     }
     decimal = true; 
+
 }
 
 function create(value){
@@ -123,9 +121,7 @@ function create(value){
 
 function allClear(){
     operator = false
-
     numbers.length = 0
-
     termNumber=""
     displayCont.innerHTML=""
     equalJustClicked = false
@@ -139,8 +135,7 @@ function clearTerm(){
 
         let numOfElements = document.getElementsByClassName('term').length;
         displayCont.removeChild(displayCont.children[numOfElements-1])
-        console.log(numbers, "after clear") 
-    } else { allclear()}
+    } 
     
 }
 
